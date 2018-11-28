@@ -1,0 +1,16 @@
+import requests
+import re
+import collections
+
+r= requests.get("http://www.newstomato.com/ReadNews.aspx?no=855190")
+r.encoding='utf8'
+data=r.text
+data=data[data.find("존경하는 국민 여러분,"): data.find("감사합니다.")+6]
+data = re.sub('<br/*>',' ', data)
+data = data.replace('.', ' ')
+data = data.replace(',', ' ') 
+data = data.split()
+
+c=collections.Counter(data)
+for k in sorted(c, key=c. __getitem__, reverse=True):
+    print(k,c[k])
